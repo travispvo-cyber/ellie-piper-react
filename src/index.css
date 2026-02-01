@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* Ellie & Piper Design Tokens */
+@theme {
+  /* Muted Rose Palette (Default) */
+  --color-primary: #D58D8D;
+  --color-primary-text: #A86A6A;
+  --color-soft-pink: #F4BBC9;
+  --color-warm-mauve: #EFC9D0;
+  --color-charcoal: #2A2B2A;
+  --color-luxury-white: #F0EEE9;
+
+  /* Font Families */
+  --font-display: "Newsreader", serif;
+  --font-sans: "Montserrat", sans-serif;
+}
+
+/* CSS Custom Properties for runtime palette switching */
+:root {
+  --gold-accent: #D58D8D;
+  --gold-text: #A86A6A;
+  --soft-blush: #F4BBC9;
+  --warm-mauve: #EFC9D0;
+  --text-dark: #2A2B2A;
+  --white: #F0EEE9;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--white);
+  color: var(--text-dark);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Hero Section Interactions */
+.hero-section {
+  transition: flex-grow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-section:hover {
+  flex-grow: 1.3;
+}
+
+.hero-section:not(:hover) {
+  flex-grow: 0.85;
+}
+
+/* Parallax zoom on hero images */
+.parallax-zoom {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-section:hover .parallax-zoom {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   STORYBOOK IMAGE DEPTH EFFECTS
+   ============================================ */
+
+/* Floating Card Container */
+.storybook-image-container {
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* The actual image with depth */
+.storybook-image {
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layered shadows for depth */
+  box-shadow:
+    0 2px 4px rgba(42, 43, 42, 0.04),
+    0 4px 8px rgba(42, 43, 42, 0.06),
+    0 8px 16px rgba(42, 43, 42, 0.08),
+    0 16px 32px rgba(42, 43, 42, 0.1),
+    0 32px 64px rgba(42, 43, 42, 0.12);
+
+  /* Subtle 3D lift */
+  transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+}
+
+/* Hover state - lift and tilt */
+.storybook-image:hover {
+  box-shadow:
+    0 4px 8px rgba(42, 43, 42, 0.06),
+    0 8px 16px rgba(42, 43, 42, 0.08),
+    0 16px 32px rgba(42, 43, 42, 0.1),
+    0 32px 64px rgba(42, 43, 42, 0.14),
+    0 48px 96px rgba(42, 43, 42, 0.16);
+
+  transform: translateZ(20px) rotateX(-2deg) rotateY(2deg);
+}
+
+/* Inner vignette overlay */
+.storybook-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(213, 141, 141, 0.08) 100%
+  );
+}
+
+/* Soft inner glow */
+.storybook-image::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 50%,
+    rgba(42, 43, 42, 0.05) 100%
+  );
+  z-index: -1;
+}
+
+/* Page curl effect (optional - applied via class) */
+.page-curl::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    rgba(213, 141, 141, 0.1) 50%,
+    rgba(244, 187, 201, 0.3) 100%
+  );
+  border-radius: 0 0 12px 0;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Storybook navigation buttons */
+.storybook-btn {
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #666;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.storybook-btn:hover:not(:disabled) {
+  border-color: var(--gold-accent);
+  color: var(--gold-text);
+}
+
+.storybook-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Navigation dots */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dot:hover {
+  background: var(--warm-mauve);
+}
+
+.dot.active {
+  background: var(--gold-accent);
+  transform: scale(1.2);
+}
+
+/* Progress bar */
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-accent), var(--warm-mauve));
+  transition: width 0.3s ease;
+}
+
+/* Glassmorphism card for storybook preview */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(213, 141, 141, 0.2);
+  border-radius: 16px;
+}
+
+/* Triptych grid layout */
+@media (min-width: 768px) {
+  .triptych-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 0;
+    height: calc(100vh - 4rem);
+  }
+}
+
+/* Mobile stack */
+@media (max-width: 767px) {
+  .triptych-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-section:hover,
+  .hero-section:not(:hover) {
+    flex-grow: 1;
+  }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}

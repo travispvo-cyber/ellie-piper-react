@@ -46,7 +46,7 @@ export function HeroSection({
         </p>
         <a
           href={ctaLink}
-          className="inline-block px-8 md:px-10 py-3 md:py-4 bg-[var(--text-dark)] text-[var(--white)] hover:bg-[var(--text-dark)]/80 transition-all duration-300 font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold mt-4"
+          className="inline-block px-8 md:px-10 py-3 md:py-4 bg-[#e8b1b2] text-white hover:bg-[#e69997] transition-all duration-300 font-sans text-[10px] md:text-xs uppercase tracking-widest font-bold mt-4"
         >
           {cta}
         </a>

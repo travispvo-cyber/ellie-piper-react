@@ -10,7 +10,7 @@ function App() {
       <Navbar />
 
       {/* Triptych Layout - Single Screen */}
-      <main className="triptych-grid pt-44 md:pt-48 flex-1">
+      <main className="triptych-grid pt-[calc(33vw+50px)] flex-1">
         {/* Left: The Shop */}
         <HeroSection
           {...heroSections.shop}

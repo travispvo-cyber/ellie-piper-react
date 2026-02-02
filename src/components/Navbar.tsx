@@ -13,16 +13,13 @@ export function Navbar({ className = '' }: NavbarProps) {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 ${className}`}
-      style={{
-        background: 'linear-gradient(90deg, #f4e2e3 0%, #fdfbfa 15%, #fdfbfa 85%, #f9ece9 100%)',
-      }}
     >
-      {/* Logo Banner */}
-      <div className="flex justify-center items-center w-full h-[120px] md:h-[150px]">
+      {/* Full-width Logo Banner */}
+      <div className="w-full">
         <img
-          src="/images/elliepiperlogo.avif"
+          src="/images/ellie-piper-banner.jpg"
           alt="Ellie & Piper Party Boutique"
-          className="max-h-full w-auto object-contain"
+          className="w-full h-auto object-cover"
         />
       </div>
 
